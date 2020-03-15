@@ -190,6 +190,17 @@ const classComponentUpdater = {
       suspenseConfig,
     );
 
+    // update 的对象类型
+    // {
+    //   expirationTime,
+    //   suspenseConfig,
+
+    //   tag: UpdateState,
+    //   payload: null,
+    //   callback: null,
+
+    //   next: (null: any),
+    // }
     const update = createUpdate(expirationTime, suspenseConfig);
     update.payload = payload;
     if (callback !== undefined && callback !== null) {
@@ -199,6 +210,7 @@ const classComponentUpdater = {
       update.callback = callback;
     }
 
+    // 也是在 ReactUpdateQueue.js 中
     enqueueUpdate(fiber, update);
     scheduleWork(fiber, expirationTime);
   },

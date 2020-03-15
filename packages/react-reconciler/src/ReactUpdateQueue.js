@@ -203,6 +203,13 @@ export function createUpdate(
 }
 
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
+  // updateQueue 类型
+  // {
+  //   baseState: State,
+  //   baseQueue: Update<State> | null,
+  //   shared: SharedQueue < State >,
+  //   effects: Array<Update<State>> | null,
+  // }
   const updateQueue = fiber.updateQueue;
   if (updateQueue === null) {
     // Only occurs if the fiber has been unmounted.
@@ -211,6 +218,8 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
 
   const sharedQueue = updateQueue.shared;
   const pending = sharedQueue.pending;
+  // 判断当前是否有更新？然后加入到循环链表中
+  // 为了 fiber 的更新？
   if (pending === null) {
     // This is the first update. Create a circular list.
     update.next = update;

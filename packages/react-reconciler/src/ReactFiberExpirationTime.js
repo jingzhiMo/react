@@ -36,9 +36,11 @@ export const Idle = 2;
 // priority of hover targets.
 export const ContinuousHydration = 3;
 export const Sync = MAX_SIGNED_31_BIT_INT;
+// Math.pow(2, 30) - 1
 export const Batched = Sync - 1;
 
 const UNIT_SIZE = 10;
+// Math.pow(2, 30) - 1 - 2
 const MAGIC_NUMBER_OFFSET = Batched - 1;
 
 // 1 unit of expiration time represents 10ms.

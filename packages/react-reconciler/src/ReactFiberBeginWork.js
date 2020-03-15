@@ -3126,6 +3126,7 @@ function beginWork(
       );
     }
     case FunctionComponent: {
+      // 返回生成组件的函数
       const Component = workInProgress.type;
       const unresolvedProps = workInProgress.pendingProps;
       const resolvedProps =

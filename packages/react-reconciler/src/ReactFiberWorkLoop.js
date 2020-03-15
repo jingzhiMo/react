@@ -379,6 +379,8 @@ export function scheduleUpdateOnFiber(
   fiber: Fiber,
   expirationTime: ExpirationTime,
 ) {
+  // 检查是否有“无限”嵌套的循环更新
+  // 这个无限值，是指 NESTED_UPDATE_LIMIT 的常量， 50次
   checkForNestedUpdates();
   warnAboutInvalidUpdatesOnClassComponentsInDEV(fiber);
 
@@ -395,6 +397,7 @@ export function scheduleUpdateOnFiber(
   // priority as an argument to that function and this one.
   const priorityLevel = getCurrentPriorityLevel();
 
+  // Sync 的值为： MAX_SIGNED_31_BIT_INT
   if (expirationTime === Sync) {
     if (
       // Check if we're inside unbatchedUpdates

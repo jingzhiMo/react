@@ -80,6 +80,7 @@ Component.prototype.setState = function(partialState, callback) {
  * @protected
  */
 Component.prototype.forceUpdate = function(callback) {
+  // packages/react-reconciler/src/ReactFiberClassComponent.js 183
   this.updater.enqueueForceUpdate(this, callback, 'forceUpdate');
 };
 

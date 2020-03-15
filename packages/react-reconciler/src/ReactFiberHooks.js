@@ -396,12 +396,14 @@ export function renderWithHooks(
       ReactCurrentDispatcher.current = HooksDispatcherOnMountInDEV;
     }
   } else {
+    // 判断是否赋值 mount 还是 update，通过判断 current 与 current.memoizedState
     ReactCurrentDispatcher.current =
       current === null || current.memoizedState === null
         ? HooksDispatcherOnMount
         : HooksDispatcherOnUpdate;
   }
 
+  // secondArg 为对应的 context
   let children = Component(props, secondArg);
 
   // Check if there was a render phase update
